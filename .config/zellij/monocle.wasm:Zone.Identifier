@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://github.com/imsnif/monocle/releases/tag/0.39.0
+HostUrl=https://objects.githubusercontent.com/github-production-release-asset-2e65be/656567729/268bc5ee-39cd-4641-a272-cd52706c9681?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20231121%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231121T032343Z&X-Amz-Expires=300&X-Amz-Signature=223bcf7f8893aae0d1d698226a0f4d6177a9c88aff2538712a9879bec766e7aa&X-Amz-SignedHeaders=host&actor_id=75262743&key_id=0&repo_id=656567729&response-content-disposition=attachment%3B%20filename%3Dmonocle.wasm&response-content-type=application%2Foctet-stream
