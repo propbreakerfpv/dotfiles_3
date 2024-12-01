@@ -90,7 +90,7 @@ style = "cyan bold"
 [custom.is_git]
 description = "Currently in a git repo"
 command = "echo '󰊢'"
-when = "git status"
+when = true
 style = "git_red"
 
 [custom.git_saround_start]
@@ -114,6 +114,7 @@ command = "prop-time aoc"
 when = true
 style = ""
 
+# show the GNU logo if the gnu stow repo isn't clean!
 [custom.stow_repo]
 format = " [$symbol](git_red)"
 symbol = ""
