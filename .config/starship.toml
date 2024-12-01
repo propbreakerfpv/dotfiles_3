@@ -117,4 +117,4 @@ style = ""
 [custom.stow_repo]
 format = " [$symbol](git_red)"
 symbol = ""
-when = "git -C ~/dotfiles_3 status"
+when = "starship_git_status.sh"
