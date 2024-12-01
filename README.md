@@ -19,7 +19,6 @@ stow .
 ```
 
 commit and push all changes to github
-if this doesn't work it is a bash script in bin. might need to be chmoded or smth
 ```sh 
 store
 ```
