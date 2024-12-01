@@ -97,14 +97,14 @@ style = "git_red"
 description = "a wrapper for all the git info"
 format = "[$symbol($output)]($style)"
 command = "echo '{'"
-when = "git status"
+when = "starship_git_status.sh"
 style = "git_red"
 
 [custom.git_saround_end]
 description = "a wrapper for all the git info"
 format = "[$symbol($output)]($style) "
 command = "echo '}'"
-when = "git status"
+when = "starship_git_status.sh"
 style = "git_red"
 
 [custom.starship_time]
