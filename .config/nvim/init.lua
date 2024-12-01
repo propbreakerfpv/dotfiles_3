@@ -260,6 +260,15 @@ require('lazy').setup({
   --
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
   -- { import = 'custom.plugins' },
+  -- {
+  --   'ThePrimeagen/vim-apm',
+  --   config = function()
+  --     local apm = require("vim-apm")
+  --
+  --     apm:setup({})
+  --     vim.keymap.set("n", "<leader>apm", function() apm:toggle_monitor() end)
+  --   end
+  -- },
   {
     'ThePrimeagen/harpoon',
     config = function()
@@ -438,7 +447,7 @@ vim.keymap.set('n', '<leader>ss', require('telescope.builtin').spell_suggest, { 
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim', 'html', 'css' },
+  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim', 'html', 'css', 'gleam' },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = true,
@@ -560,7 +569,7 @@ end
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
 local servers = {
-  clangd = {},
+  clangd = { filetypes = { "arduino" } },
   -- gopls = {},
   pyright = {},
   rust_analyzer = {},

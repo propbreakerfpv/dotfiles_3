@@ -2,6 +2,8 @@
 # Enable colors and change prompt:
 
 
+# test
+
 export EDITOR="nvim"
 export VISUAL="nvim"
 
@@ -106,6 +108,8 @@ bindkey '^e' edit-command-line
 # aliases
 alias ls="ls --color"
 
+alias python="/Applications/Python3.12/IDLE.app"
+
 alias pifs="sshfs -o default_permissions pi@10.0.0.84:/home/pi ~/bus/pi/"
 
 alias tmuxs="tmux source ~/.config/tmux/tmux.conf"
@@ -131,6 +135,10 @@ alias fzc="compgen -A function -abck | fzf"
 # export go path
 export PATH=$PATH:/usr/local/go/bin
 
+# export bin path for homebrew
+export PATH=$PATH:/opt/homebrew/bin/
+
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -153,3 +161,12 @@ eval "$(sheldon source)"
 # Wasmer
 export WASMER_DIR="/home/prop/.wasmer"
 [ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
+
+export WASMTIME_HOME="$HOME/.wasmtime"
+
+export PATH="$WASMTIME_HOME/bin:$PATH"
+export PATH=$PATH:/Users/jonas/code/wabt/out/clang/Debug
+export PATH=$PATH:/opt/local/bin
+export PATH=$PATH:/usr/local/bin
+
+. "$HOME/.cargo/env"
