@@ -16,6 +16,7 @@ $git_status\
 ${custom.git_saround_end}\
 $rust\
 ${custom.starship_time}
+${custom.stow_repo}
 """
 
 add_newline = false
@@ -112,3 +113,8 @@ description = "my custom time command"
 command = "prop-time aoc"
 when = true
 style = ""
+
+[custom.stow_repo]
+format = " [$symbol](git_red)"
+symbol = ""
+when = "git -C ~/dotfiles_3 status"
