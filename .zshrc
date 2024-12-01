@@ -168,5 +168,6 @@ export PATH="$WASMTIME_HOME/bin:$PATH"
 export PATH=$PATH:/Users/jonas/code/wabt/out/clang/Debug
 export PATH=$PATH:/opt/local/bin
 export PATH=$PATH:/usr/local/bin
+export PATH=$PATH:~/bin
 
 . "$HOME/.cargo/env"
