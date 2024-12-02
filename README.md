@@ -20,6 +20,11 @@ stow .
 
 commit and push all changes to github
 ```sh 
-store
+dfu
+```
+
+run any git command in the dotfiles repo
+```sh 
+dfu status
 ```
 
