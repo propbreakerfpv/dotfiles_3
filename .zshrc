@@ -104,7 +104,9 @@ bindkey '^e' edit-command-line
 
 
 # aliases
-alias ls="ls --color"
+# alias ls="ls --color"
+
+export DOT="/Users/jonas/dotfiles_3/"
 
 alias python="/Applications/Python3.12/IDLE.app"
 
@@ -112,9 +114,9 @@ alias pifs="sshfs -o default_permissions pi@10.0.0.84:/home/pi ~/bus/pi/"
 
 alias tmuxs="tmux source ~/.config/tmux/tmux.conf"
 
-alias ls="exa -h --git -l --group-directories-first"
-alias ll="exa -lah --git --group-directories-first"
-alias lsf="exa -lah --git --group-directories-first --reverse"
+alias ls="eza -h --git -l --group-directories-first"
+alias ll="eza -lah --git --group-directories-first"
+alias lsf="eza -lah --git --group-directories-first --reverse"
 
 alias s="source $HOME/.zshrc"
 
@@ -122,7 +124,11 @@ alias perf="/usr/lib/linux-tools/5.4.0-148-generic/perf"
 
 alias acli="/mnt/c/Users/jonas/arduino-cli.exe"
 
-alias store="git -C ~/dotfiles_3/ add . && git -C ~/dotfiles_3/ commit -m 'commit using store' && git -C ~/dotfiles_3/ push"
+alias dfu="git -C $DOT add . && git -C $DOT commit -m 'commit using store' && git -C $DOT push"
+
+function df () {
+  git -C $DOT "$1"
+}
 
 function help () {
   "$1" --help | awk 'NF' | fzf --preview="$1 --help | rg --color always --context 8 -F {}"
