@@ -577,7 +577,7 @@ local servers = {
   pyright = {},
   rust_analyzer = {},
   tsserver = {},
-  html = { filetypes = { 'html', 'twig', 'hbs' } },
+  html = { filetypes = { 'html', 'twig', 'hbs', 'svg' } },
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -585,6 +585,16 @@ local servers = {
     },
   },
 }
+
+vim.lsp.start({
+  name = 'rhai',
+  cmd = {'rhai', "lsp", "stdio"},
+  filetypes = {"rhai"},
+  cmd_args = {"lsp stdio"},
+  root_dir = vim.fs.dirname(vim.fs.find({'Cargo.toml'}, { upward = true })[1]),
+})
+
+-- vim.lsp.set_log_level('debug')
 
 -- Setup neovim lua configuration
 require('neodev').setup()
