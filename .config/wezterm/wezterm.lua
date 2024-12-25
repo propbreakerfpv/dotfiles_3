@@ -10,6 +10,7 @@ config = {
     -- theame
     window_background_opacity = 0.97,
     window_background_image = "/Users/jonas/.config/wezterm/assets/blury_background.jpg",
+    macos_window_background_blur = 10,
 
     colors = {
         cursor_bg = "white",
