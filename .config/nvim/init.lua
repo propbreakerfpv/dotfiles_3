@@ -276,7 +276,8 @@ require('lazy').setup({
       local ui = require("harpoon.ui")
 
       vim.keymap.set("n", "<leader>ga", mark.add_file, { desc = "harpoon add file" })
-      vim.keymap.set("n", "<leader>gs", ui.toggle_quick_menu, { desc = "harpoon toggle quick menu - gui, overlay, files" })
+      vim.keymap.set("n", "<leader>gs", ui.toggle_quick_menu,
+        { desc = "harpoon toggle quick menu - gui, overlay, files" })
 
 
       vim.keymap.set("n", "<C-f>", function()
@@ -375,18 +376,18 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- past without removing from buffer
-vim.keymap.set("x", "P", "\"_dP")
+vim.keymap.set("x", "<leader>p", "\"_dP")
 
 -- yank into system clipboard
-vim.keymap.set({ "n", "v" }, "<leader>y", "\"+y")
-vim.keymap.set("n", "<leader>Y", "\"+Y")
+vim.keymap.set({ "n", "v" }, "<leader>y", "\"+y", { desc = "yank into system clipboard" })
+vim.keymap.set("n", "<leader>Y", "\"+Y", { desc = "yank into system clipboard" })
 
--- C-j and k remaps for c-u and c-d. we also center the view with zz
+-- C-k and l remaps for c-u and c-d. we also center the view with zz
 vim.keymap.set("n", "<C-h>", "<C-d>zz")
 vim.keymap.set("n", "<C-l>", "<C-u>zz")
 
 -- remap number increment to avoid harpoon
-vim.keymap.set("n", "<C-z>", "<C-a>")
+vim.keymap.set("n", "<C-z>", "<C-a>", {desc = "increment number"})
 
 -- open netRW
 vim.keymap.set("n", "<leader>fv", vim.cmd.Ex, { desc = "netRW, file" })
@@ -445,6 +446,7 @@ vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { de
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<leader>ss', require('telescope.builtin').spell_suggest, { desc = '[S]pell [s]uggest' })
+vim.keymap.set('n', '<leader>sk', require('telescope.builtin').keymaps, { desc = '[S]earch [k]eymaps' })
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
@@ -515,6 +517,7 @@ require('nvim-treesitter.configs').setup {
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
+vim.keymap.set('n', ']g', vim.diagnostic.open_float, { desc = 'Open Floting Diagnostic' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
@@ -547,7 +550,8 @@ local on_attach = function(_, bufnr)
 
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-  nmap('<C-K>', vim.lsp.buf.signature_help, 'Signature Documentation')
+  -- nmap('<C-K>', vim.lsp.buf.signature_help, 'Signature Documentation')
+  vim.keymap.set('i', '<C-k>', vim.lsp.buf.signature_help, { buffer = bufnr, desc = 'Signature Help' })
 
   -- Lesser used LSP functionality
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -557,6 +561,7 @@ local on_attach = function(_, bufnr)
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, '[W]orkspace [L]ist Folders')
 
+  nmap('=f', vim.lsp.buf.format, 'Lsp [F]ormate')
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
@@ -588,10 +593,10 @@ local servers = {
 
 vim.lsp.start({
   name = 'rhai',
-  cmd = {'rhai', "lsp", "stdio"},
-  filetypes = {"rhai"},
-  cmd_args = {"lsp stdio"},
-  root_dir = vim.fs.dirname(vim.fs.find({'Cargo.toml'}, { upward = true })[1]),
+  cmd = { 'rhai', "lsp", "stdio" },
+  filetypes = { "rhai" },
+  cmd_args = { "lsp stdio" },
+  root_dir = vim.fs.dirname(vim.fs.find({ 'Cargo.toml' }, { upward = true })[1]),
 })
 
 -- vim.lsp.set_log_level('debug')
@@ -638,7 +643,7 @@ cmp.setup {
   mapping = cmp.mapping.preset.insert {
     ['<C-n>'] = cmp.mapping.select_next_item(),
     ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-d>'] = cmp.mapping.scroll_docs( -4),
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete {},
     ['<CR>'] = cmp.mapping.confirm {
@@ -657,8 +662,8 @@ cmp.setup {
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif luasnip.locally_jumpable( -1) then
-        luasnip.jump( -1)
+      elseif luasnip.locally_jumpable(-1) then
+        luasnip.jump(-1)
       else
         fallback()
       end
